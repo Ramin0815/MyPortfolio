@@ -2,7 +2,7 @@
 
 게임 클라이언트 프로그래머 지원을 위해 제가 직접 작성한 주요 코드를 모아 정리한 Repository입니다.
 
-Unity/C# 기반 Game Programming부터 HLSL Shader, OpenGL/GLSL, C++/OpenCV까지  
+Unity/C# 기반 Game Programming부터 HLSL Shader까지  
 프로젝트와 수업에서 직접 구현한 코드 중 대표적인 내용을 선별했습니다.
 
 > 이 Repository는 각 프로젝트의 전체 Source Code를 보관하기 위한 저장소가 아니라,  
