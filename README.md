@@ -8,8 +8,7 @@ Unity/C# 기반 Game Programming부터 HLSL Shader, OpenGL/GLSL, C++/OpenCV까�
 > 이 Repository는 각 프로젝트의 전체 Source Code를 보관하기 위한 저장소가 아니라,  
 > **제가 직접 구현하거나 주요하게 수정한 코드를 확인할 수 있도록 정리한 Portfolio용 Repository**입니다.
 >
-> Team Project의 경우 제가 담당한 코드만 선별하였으며,  
-> 수업에서 제공된 Framework를 활용한 경우 해당 내용을 별도로 명시했습니다.
+> Team Project의 경우 제가 담당한 코드만 선별하였습니다.
 >
 > 공개에 문제가 없는 코드만 포함하고 있습니다.
 
@@ -22,7 +21,6 @@ Unity/C# 기반 Game Programming부터 HLSL Shader, OpenGL/GLSL, C++/OpenCV까�
 | [`FurShader`](./FurShader) | Unity URP / HLSL / C# | Shell 기반 Fur Shader와 Artist용 Custom Shader GUI |
 | [`IKENIE`](./IKENIE) | Unity HDRP / C# | 3D 암살 게임에서 담당한 UI, Data 및 Gameplay 관련 코드 |
 | [`Korea_Traditional_Material_Shader`](./Korea_Traditional_Material_Shader) | Unity URP / HLSL | 한국 전통 소재를 표현하기 위해 제작한 Rendering Shader |
-| [`OpenGL_CV`](./OpenGL_CV) | C++ / OpenGL / GLSL / OpenCV | Graphics Programming 및 Image Processing / Computer Vision 구현 |
 
 ---
 
@@ -165,102 +163,14 @@ Real-time Rendering에서 필요한 시각적 특징을 선별해 근사적으�
 
 ---
 
-# 04. OpenGL_CV
-
-### C++ / OpenGL / GLSL / OpenCV
-
-Graphics Programming과 Image Processing / Computer Vision 수업에서  
-직접 작성한 대표 C++ 및 Shader 코드를 정리했습니다.
-
-Rendering Pipeline과 Image Processing Algorithm이  
-실제로 코드에서 어떤 Data Flow로 처리되는지를 이해하는 것에 중점을 두었습니다.
-
----
-
-## OpenGL / GLSL
-
-수업에서 제공된 Header 및 기본 Framework 일부를 활용하고,  
-각 과제에서 요구된 Rendering Logic과 GLSL Shader를 직접 구현했습니다.
-
-> OpenGL Project 전체 Framework를 처음부터 구현한 것은 아니며,  
-> 교수님이 제공한 기본 환경 위에서 과제별 Rendering Logic과 Shader를 구현했습니다.
-
-### Multi-pass Rendering & Post Processing
-
-Framebuffer Object를 이용해 Scene Rendering 결과를 Texture로 저장하고,  
-여러 Rendering Pass를 거쳐 후처리 효과를 적용했습니다.
-
-주요 구현 내용은 다음과 같습니다.
-
-- Framebuffer Object 기반 Off-screen Rendering
-- Vertical / Horizontal Gaussian Filtering
-- Luminance 기반 Edge Detection
-- Tone Quantization
-- Bump Mapping
-- TBN 기반 Normal 처리
-- Multi-pass Rendering
-
-### Geometry Shader
-
-Geometry Shader를 이용하여  
-Triangle의 Normal과 View Direction 관계를 기준으로 Silhouette을 탐색하고  
-Silhouette 주변에 새로운 Geometry를 생성하는 방식을 구현했습니다.
-
-주요 과정은 다음과 같습니다.
-
-- Triangle별 `N · V` 값 계산
-- Sign 변화가 발생하는 Edge 탐색
-- Silhouette 위치 Interpolation
-- 두 Silhouette Point를 이용한 Quad 생성
-- Geometry Shader를 이용한 새로운 Primitive 출력
-
----
-
-## Image Processing / Computer Vision
-
-OpenCV를 활용해 Image Processing과 Computer Vision의 주요 기법을 학습하고,  
-일부 Algorithm은 Pixel 단위 연산부터 직접 구현했습니다.
-
-### Image Processing
-
-Box Filter와 Alpha-trimmed Mean Filter에서는  
-Image Pixel을 직접 순회하며 Filtering Logic과 Boundary 처리를 구현했습니다.
-
-Skeletonization과 Pyramid 관련 과제에서도  
-OpenCV Primitive를 활용하면서 반복 처리 과정과 Data Flow를 직접 구성했습니다.
-
-### Computer Vision
-
-Image에서 Feature를 추출한 뒤  
-Matching 결과를 이용해 두 Image 사이의 Geometric Relationship을 계산하는 과정을 학습했습니다.
-
-SIFT, Hough Transform, RANSAC 등의 Algorithm 자체는  
-OpenCV에서 제공하는 구현을 활용했습니다.
-
----
-
 # What This Repository Shows
 
 이 Repository는 하나의 특정 기술보다  
 게임 클라이언트 개발 과정에서 경험한 여러 Programming Layer를 보여주기 위해 구성했습니다.
 
-```text
-Gameplay Programming
-        ↓
-Unity Architecture / Data Management
-        ↓
-Real-time Shader Programming
-        ↓
-Graphics Pipeline
-        ↓
-Image Processing / Computer Vision
-```
-
 Unity Project에서는 System 간 관계와 Data 관리 구조를 고민했고,  
 Shader Programming에서는 Rendering 과정과 Vector / Matrix 연산을 다뤘습니다.
-
-OpenGL에서는 Rendering Pipeline을 보다 Low-level에서 구현했으며,  
-OpenCV에서는 Image를 Data로 바라보고 여러 처리 단계를 Pipeline으로 구성하는 경험을 했습니다.
+외에도 학습을 통해 Graphics Pipeline과 Computer Vision 등에 대해 학습했습니다.
 
 이러한 경험을 통해 기능을 단순히 구현하는 것뿐 아니라  
 **현재 다루는 Data가 어디에서 생성되고, 어떤 과정을 거쳐 최종 결과로 이어지는지 파악하며 코드를 작성하는 습관**을 익혔습니다.
@@ -272,4 +182,4 @@ OpenCV에서는 Image를 Data로 바라보고 여러 처리 단계를 Pipeline�
 각 프로젝트의 전체 결과물, Gameplay 영상, Architecture Diagram,  
 구현 과정과 문제 해결 내용은 별도의 Notion Portfolio에 정리되어 있습니다.
 
-- **Notion Portfolio:** [Portfolio Link]
+- **Notion Portfolio:** [[Portfolio Link](https://app.notion.com/p/3d33ee9d462d80f69efbcb92f51c4c6e?source=copy_link)]
